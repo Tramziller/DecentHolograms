@@ -138,10 +138,14 @@ public class Lang {
 		Lang.reload();
 	}
 
-	public static void reload() {
-		CONFIG.reload();
+	public static void reload(boolean external) {
+		CONFIG.reload(external);
 		VALUES.values().forEach(ConfigValue::updateValue);
 		Common.PREFIX = PREFIX.getValue();
+	}
+
+	public static void reload() {
+		reload(false);
 	}
 
 	public static void sendVersionMessage(CommandSender sender) {

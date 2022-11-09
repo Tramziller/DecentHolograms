@@ -1,5 +1,6 @@
 package eu.decentsoftware.holograms.api.utils.config;
 
+import com.github.puregero.multilib.MultiLib;
 import eu.decentsoftware.holograms.api.utils.Common;
 import eu.decentsoftware.holograms.api.utils.location.LocationUtils;
 import lombok.Getter;
@@ -98,11 +99,22 @@ public class FileConfig extends YamlConfiguration {
     /**
      * Reloads the configuration from the file.
      */
+
     public void reload() {
+        reload(false);
+    }
+
+    public void reload(boolean external) {
         try {
             this.load(file);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
+        }
+
+        // Broadcast reload to all other plugins
+        if(!external) {
+            System.out.println("Broadcasting reload command, external: " + external);
+            MultiLib.notify("eu.decentsoftware.holograms:reload", "");
         }
     }
 

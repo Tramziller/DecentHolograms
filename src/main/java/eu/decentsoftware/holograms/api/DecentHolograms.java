@@ -103,13 +103,17 @@ public final class DecentHolograms {
         DExecutor.shutdown();
     }
 
-    public void reload() {
-        Settings.reload();
+    public void reload(boolean external) {
+        Settings.reload(external);
         Lang.reload();
 
         this.animationManager.reload();
         this.hologramManager.reload();
         this.featureManager.reload();
+    }
+
+    public void reload() {
+
     }
 
     /**
