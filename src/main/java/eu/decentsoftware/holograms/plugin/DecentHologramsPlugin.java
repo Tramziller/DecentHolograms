@@ -12,8 +12,14 @@ import eu.decentsoftware.holograms.plugin.features.HealingDisplayFeature;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.concurrent.TimeUnit;
+
 @Getter
 public class DecentHologramsPlugin extends JavaPlugin {
+
+	private WatchService service;
 
 	@Override
 	public void onLoad() {
@@ -43,8 +49,8 @@ public class DecentHologramsPlugin extends JavaPlugin {
 
 	public void registerMultliLib() {
 		MultiLib.onString(this, "eu.decentsoftware.holograms:reload", data -> {
-			System.out.println("Received reload notify");
-			DecentHologramsAPI.get().reload(true);
+			if(!MultiLib.getLocalServerName().equals(data))
+				DecentHologramsAPI.get().reload(true);
 		});
 	}
 

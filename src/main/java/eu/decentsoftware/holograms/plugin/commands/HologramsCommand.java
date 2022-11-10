@@ -1,5 +1,6 @@
 package eu.decentsoftware.holograms.plugin.commands;
 
+import com.github.puregero.multilib.MultiLib;
 import com.google.common.collect.Lists;
 import eu.decentsoftware.holograms.api.Lang;
 import eu.decentsoftware.holograms.api.commands.*;
@@ -157,6 +158,7 @@ public class HologramsCommand extends DecentCommand {
                     PLUGIN.reload();
                     long end = System.currentTimeMillis();
                     Lang.RELOADED.send(sender, end - start);
+                    MultiLib.notify("eu.decentsoftware.holograms:reload", MultiLib.getLocalServerName());
                 });
                 return true;
             };

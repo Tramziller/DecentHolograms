@@ -314,6 +314,12 @@ public class Hologram extends UpdatingHologramObject implements ITicked {
                 config.set("down-origin", downOrigin);
                 config.set("pages", pages.stream().map(HologramPage::serializeToMap).collect(Collectors.toList()));
                 config.saveData();
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 config.reload();
             });
         }

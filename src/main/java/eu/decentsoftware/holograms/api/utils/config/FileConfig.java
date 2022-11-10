@@ -43,7 +43,7 @@ public class FileConfig extends YamlConfiguration {
         this.path = path;
         this.file = new File(plugin.getDataFolder(), path);
         this.createFile();
-        this.reload();
+        this.reload(true);
     }
 
     /**
@@ -113,7 +113,6 @@ public class FileConfig extends YamlConfiguration {
 
         // Broadcast reload to all other plugins
         if(!external) {
-            System.out.println("Broadcasting reload command, external: " + external);
             MultiLib.notify("eu.decentsoftware.holograms:reload", "");
         }
     }
