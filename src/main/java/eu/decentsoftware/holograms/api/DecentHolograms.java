@@ -55,8 +55,8 @@ public final class DecentHolograms {
 
     protected void enable() {
         NMS.init();
-        Settings.reload();
-        Lang.reload();
+        Settings.reload(true);
+        Lang.reload(true);
         DExecutor.init();
 
         this.ticker = new Ticker();
@@ -103,13 +103,17 @@ public final class DecentHolograms {
         DExecutor.shutdown();
     }
 
-    public void reload() {
-        Settings.reload();
-        Lang.reload();
+    public void reload(boolean external) {
+        Settings.reload(external);
+        Lang.reload(external);
 
         this.animationManager.reload();
         this.hologramManager.reload();
         this.featureManager.reload();
+    }
+
+    public void reload() {
+
     }
 
     /**

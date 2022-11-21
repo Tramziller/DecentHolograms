@@ -60,8 +60,8 @@ public class Settings {
     /**
      * Reload all Settings
      */
-    public static void reload() {
-        CONFIG.reload();
+    public static void reload(boolean external) {
+        CONFIG.reload(external);
 
         CFG.load(DECENT_HOLOGRAMS.getPlugin(), Settings.class, CONFIG.getFile());
 
@@ -77,6 +77,10 @@ public class Settings {
             }
             CUSTOM_REPLACEMENTS = replacements;
         }
+    }
+
+    public static void reload() {
+        reload(false);
     }
 
     public static FileConfig getConfig() {
